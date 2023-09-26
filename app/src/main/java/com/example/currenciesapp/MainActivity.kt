@@ -1,17 +1,17 @@
 package com.example.currenciesapp
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.currenciesapp.ui.theme.CurrenciesAppTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.example.currenciesapp.databinding.ActivityMainBinding
 
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(ActivityMainBinding.inflate(layoutInflater).root)
+    }
+}
+
+/*
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,4 +43,4 @@ fun GreetingPreview() {
     CurrenciesAppTheme {
         Greeting("Android")
     }
-}
+}*/
