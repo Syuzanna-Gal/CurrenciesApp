@@ -3,7 +3,9 @@ package com.example.currenciesapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.currenciesapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

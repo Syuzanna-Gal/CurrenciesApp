@@ -2,7 +2,6 @@ package com.example.currenciesapp.core.base
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -10,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.coreui.extensions.collectWhenStarted
 import com.example.coreui.extensions.navigateSafe
 import com.example.currenciesapp.core.navigation.Command
-import com.example.foodorderapp.core.base.BaseViewModel
 
 abstract class BaseFragment<VM>() : Fragment()
         where VM : BaseViewModel {
