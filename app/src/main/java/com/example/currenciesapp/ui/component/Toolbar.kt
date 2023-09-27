@@ -1,15 +1,13 @@
 package com.example.currenciesapp.ui.component
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,12 +19,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.currenciesapp.R
 import com.example.currenciesapp.ui.theme.Jet
+import java.nio.file.WatchEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Toolbar(
-    title: String, isBackButtonVisible: Boolean = false
+    title: String,
+    isBackButtonVisible: Boolean = false,
+    backButtonAction: () -> Unit = {},
 ) {
     /* TopAppBar(
         title = {
@@ -50,6 +51,9 @@ fun Toolbar(
             Icon(
                 painter = painterResource(id = R.drawable.ic_back),
                 contentDescription = null,
+                modifier = Modifier.clickable {
+                    backButtonAction()
+                }
             )
         }
 

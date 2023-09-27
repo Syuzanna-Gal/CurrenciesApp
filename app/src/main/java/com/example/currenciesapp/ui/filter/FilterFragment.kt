@@ -3,6 +3,7 @@ package com.example.currenciesapp.ui.filter
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -33,8 +34,12 @@ class FilterFragment : BaseComposeFragment<FilterViewModel>() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
     override fun InitView() {
-        Scaffold() {
-            Column {
+        Scaffold {
+            Column(
+                modifier = Modifier
+                    .background(White)
+                    .fillMaxHeight()
+            ) {
                 Column(
                     modifier = Modifier
                         .background(Cultured)
@@ -42,7 +47,8 @@ class FilterFragment : BaseComposeFragment<FilterViewModel>() {
                 ) {
                     Toolbar(
                         title = stringResource(id = R.string.filters_title),
-                        isBackButtonVisible = true
+                        isBackButtonVisible = true,
+                        backButtonAction = { viewModel.navigateUp() }
                     )
                 }
                 Column(

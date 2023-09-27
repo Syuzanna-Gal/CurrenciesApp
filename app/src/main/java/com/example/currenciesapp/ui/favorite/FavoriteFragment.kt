@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,8 +30,12 @@ class FavoriteFragment : BaseComposeFragment<FavoriteViewModel>() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
     override fun InitView() {
-        Scaffold() {
-            Column {
+        Scaffold {
+            Column(
+                modifier = Modifier
+                    .background(White)
+                    .fillMaxHeight()
+            ) {
                 Column(
                     modifier = Modifier
                         .background(Cultured)

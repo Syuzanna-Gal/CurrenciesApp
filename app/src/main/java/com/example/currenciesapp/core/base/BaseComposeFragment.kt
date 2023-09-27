@@ -16,7 +16,7 @@ import com.example.coreui.extensions.navigateSafe
 import com.example.currenciesapp.core.navigation.Command
 
 abstract class BaseComposeFragment<VM>() : Fragment()
-        where VM : BaseViewModel {
+        where VM : BaseComposeViewModel {
 
     abstract val viewModel: VM
 

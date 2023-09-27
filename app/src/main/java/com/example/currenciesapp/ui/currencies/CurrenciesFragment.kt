@@ -7,7 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -48,8 +48,12 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
     override fun InitView() {
-        Scaffold() {
-            Column {
+        Scaffold {
+            Column(
+                modifier = Modifier
+                    .background(White)
+                    .fillMaxHeight()
+            ) {
                 Column(
                     modifier = Modifier
                         .background(Cultured)
@@ -105,27 +109,27 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
                                 )
                             }
                             /* TextField(
-                                 // The `menuAnchor` modifier must be passed to the text field for correctness.
-                                 value = selectedOptionText,
-                                 modifier = Modifier.menuAnchor().border(
-                                     width = 1.dp,
-                                     color = WildBlueYonder,
-                                     shape = RoundedCornerShape(8.dp)
-                                 )
-                                     .background(color = White, shape = RoundedCornerShape(8.dp))
-                                     .padding(12.dp),
-                                 readOnly = true,
-                                 onValueChange = {},
-                                 trailingIcon = { Icon(
-                                     painter = painterResource(id = R.drawable.ic_arrow_down),
-                                     contentDescription = null,
-                                     modifier = Modifier
-                                         .rotate(if (expanded) 180f else 0f)
-                                         .clickable {
-                                             expanded = true
-                                         }
-                                 )}
-                             )*/
+                             // The `menuAnchor` modifier must be passed to the text field for correctness.
+                             value = selectedOptionText,
+                             modifier = Modifier.menuAnchor().border(
+                                 width = 1.dp,
+                                 color = WildBlueYonder,
+                                 shape = RoundedCornerShape(8.dp)
+                             )
+                                 .background(color = White, shape = RoundedCornerShape(8.dp))
+                                 .padding(12.dp),
+                             readOnly = true,
+                             onValueChange = {},
+                             trailingIcon = { Icon(
+                                 painter = painterResource(id = R.drawable.ic_arrow_down),
+                                 contentDescription = null,
+                                 modifier = Modifier
+                                     .rotate(if (expanded) 180f else 0f)
+                                     .clickable {
+                                         expanded = true
+                                     }
+                             )}
+                         )*/
                             ExposedDropdownMenu(
                                 expanded = expanded,
                                 onDismissRequest = { expanded = false },
@@ -166,7 +170,7 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
                                 .padding(12.dp)
                                 .clickable {
                                     viewModel.navigateToFilters()
-                                }
+                                },
                         )
                     }
                 }
