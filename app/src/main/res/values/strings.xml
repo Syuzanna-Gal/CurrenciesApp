@@ -3,4 +3,9 @@
 
     <!--currencies fragment-->
     <string name="currencies_title">Currencies</string>
+    <!--filters fragment-->
+    <string name="filters_title">Filters</string>
+    <string name="filters_sort_by">Sort by</string>
+    <!--favorites fragment-->
+    <string name="favorites_title">Favorites</string>
 </resources>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home_graph"
+        android:id="@+id/currencies_graph"
         android:icon="@drawable/ic_currencies"
-        android:title="Currencies" />
+        android:title="@string/currencies_title"
+        android:enabled="true"/>
     <item
         android:id="@+id/favorite_graph"
         android:icon="@drawable/ic_favorite_bottom_nav"
-        android:title="Favorite" />
+        android:title="@string/favorites_title"
+        android:enabled="true"/>
 </menu>
