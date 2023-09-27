@@ -42,8 +42,7 @@ fun Toolbar(
     )*/
     Row(
         modifier = Modifier
-            .background(Cultured)
-            .padding(start = 16.dp, top = 10.dp, end = 16.dp, bottom = 10.dp)
+            .padding(top = 10.dp, bottom = 10.dp)
             .fillMaxWidth()
     ) {
         Text(

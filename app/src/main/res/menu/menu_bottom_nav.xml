@@ -6,6 +6,6 @@
         android:title="Currencies" />
     <item
         android:id="@+id/favorite_graph"
-        android:icon="@drawable/ic_favorite_selected"
+        android:icon="@drawable/ic_favorite_bottom_nav"
         android:title="Favorite" />
 </menu>
