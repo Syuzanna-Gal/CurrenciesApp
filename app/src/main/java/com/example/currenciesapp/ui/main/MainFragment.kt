@@ -1,5 +1,6 @@
 package com.example.currenciesapp.ui.main
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
@@ -12,10 +13,14 @@ import com.example.currenciesapp.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment() : BaseFragment<MainViewModel>() {
+class MainFragment() : BaseFragment<MainViewModel>(R.layout.fragment_main) {
     override val viewModel: MainViewModel by viewModels()
     private val binding by viewBinding(FragmentMainBinding::bind)
     private lateinit var navController: NavController
+
+    override fun initView() {
+        setupBottomNavigation()
+    }
 
     private fun setupBottomNavigation() {
         val navHostFragment = childFragmentManager.findFragmentById(
