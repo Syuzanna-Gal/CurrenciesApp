@@ -3,6 +3,7 @@ package com.example.currenciesapp.ui.filter
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.fragment.app.viewModels
 import com.example.currenciesapp.R
 import com.example.currenciesapp.core.base.BaseComposeFragment
+import com.example.currenciesapp.ui.component.Button
 import com.example.currenciesapp.ui.component.FilterItem
 import com.example.currenciesapp.ui.component.Toolbar
 import com.example.currenciesapp.ui.theme.Cultured
@@ -69,6 +71,8 @@ class FilterFragment : BaseComposeFragment<FilterViewModel>() {
                     for (i in 1..5) {
                         FilterItem(title = "filter")
                     }
+                    Spacer(modifier = Modifier.weight(1f))
+                    Button(title = stringResource(id = R.string.filters_apply))
                 }
             }
         }

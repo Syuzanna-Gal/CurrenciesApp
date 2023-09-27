@@ -6,6 +6,7 @@
     <!--filters fragment-->
     <string name="filters_title">Filters</string>
     <string name="filters_sort_by">Sort by</string>
+    <string name="filters_apply">Apply</string>
     <!--favorites fragment-->
     <string name="favorites_title">Favorites</string>
 </resources>
