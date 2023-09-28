@@ -53,12 +53,12 @@ class FavoriteFragment : BaseComposeFragment<FavoriteViewModel>() {
                     {
                         LazyColumn {
                             items(4) {
-                                CurrencyItem(
+                               /* CurrencyItem(
                                     title = "AMD",
                                     value = it.toString(),
                                     isFavorite = true,
                                     onFavoriteStateChange = {},
-                                )
+                                )*/
                             }
                         }
                     }

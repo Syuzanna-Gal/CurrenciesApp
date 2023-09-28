@@ -18,13 +18,12 @@ import androidx.compose.ui.unit.sp
 import com.example.currenciesapp.R
 import com.example.currenciesapp.ui.theme.AntiFlashWhite
 import com.example.currenciesapp.ui.theme.Jet
+import com.example.domain.entity.CurrencyUiEntity
 
 @Composable
 fun CurrencyItem(
-    title: String,
-    value: String,
-    isFavorite: Boolean = false,
-    onFavoriteStateChange: (String) -> Unit,
+    currencyUiEntity: CurrencyUiEntity,
+    onFavoriteStateChange: (CurrencyUiEntity) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -33,7 +32,7 @@ fun CurrencyItem(
             .padding(start = 12.dp, top = 16.dp, end = 12.dp, bottom = 16.dp)
     ) {
         Text(
-            text = title,
+            text = currencyUiEntity.name,
             modifier = Modifier.weight(1f),
             style = TextStyle(
                 fontSize = 16.sp,
@@ -43,7 +42,7 @@ fun CurrencyItem(
             )
         )
         Text(
-            text = value,
+            text = currencyUiEntity.value,
             style = TextStyle(
                 fontSize = 16.sp,
                 color = Jet,
@@ -52,7 +51,7 @@ fun CurrencyItem(
             )
         )
         Icon(
-            painter = if (isFavorite) {
+            painter = if (currencyUiEntity.isFavorite) {
                 painterResource(id = R.drawable.ic_favorite_selected)
             } else {
                 painterResource(id = R.drawable.ic_favorite_deafult)
@@ -60,7 +59,7 @@ fun CurrencyItem(
             contentDescription = null,
             modifier = Modifier
                 .padding(start = 16.dp)
-                .clickable { onFavoriteStateChange(title) }
+                .clickable { onFavoriteStateChange(currencyUiEntity) }
         )
     }
 }

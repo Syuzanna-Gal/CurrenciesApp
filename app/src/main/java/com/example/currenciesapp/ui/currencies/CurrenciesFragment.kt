@@ -189,10 +189,10 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
                         LazyColumn {
                             items(currenciesState.value) { item ->
                                 CurrencyItem(
-                                    title = item.name,
-                                    value = item.value,
-                                    isFavorite = item.isFavorite,
-                                    onFavoriteStateChange = {})
+                                   item,
+                                    onFavoriteStateChange = {
+                                        viewModel.addOrRemoveFromFavorite(it)
+                                    })
                             }
                         }
                     }

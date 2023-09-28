@@ -4,6 +4,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.currenciesapp.core.base.BaseComposeViewModel
 import com.example.currenciesapp.core.navigation.Command
 import com.example.domain.entity.CurrencyUiEntity
+import com.example.domain.usecase.AddToFavoriteUseCase
+import com.example.domain.usecase.DeleteFromFavoriteUseCase
 import com.example.domain.usecase.FetchCurrenciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,12 +15,18 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CurrenciesViewModel @Inject constructor(
     private val fetchCurrenciesUseCase: FetchCurrenciesUseCase,
+    private val addToFavoriteUseCase: AddToFavoriteUseCase,
+    private val deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
 ) : BaseComposeViewModel() {
+
+
 
     private val _currencies = MutableStateFlow<List<CurrencyUiEntity>>(emptyList())
     val currencies = _currencies.asStateFlow()
@@ -39,26 +47,32 @@ class CurrenciesViewModel @Inject constructor(
             .onEach {
                 _currencies.value = it
             }
-            .catch {  }
+            .catch { }
             .launchIn(viewModelScope)
-        /* _currencies.value = listOf(
-             CurrencyUiEntity(name = "AMD", value = 2.00, isFavorite = false),
-             CurrencyUiEntity(name = "EUR", value = 3.00, isFavorite = false),
-             CurrencyUiEntity(name = "AMD", value = 5.00, isFavorite = false),
-             CurrencyUiEntity(name = "EUR", value = 2.00, isFavorite = true)
-         )*/
     }
 
-    /* fun updateCurrencies(){
-         _currencies.value = listOf(
-             CurrencyUiEntity(name = "AMD", value = 7.00, isFavorite = true),
-             CurrencyUiEntity(name = "EUR", value = 3.00, isFavorite = false),
-             CurrencyUiEntity(name = "AMD", value = 4.00, isFavorite = false),
-             CurrencyUiEntity(name = "EUR", value = 2.00, isFavorite = false)
-         )
-     }*/
+    fun addOrRemoveFromFavorite(currencyUiEntity: CurrencyUiEntity) {
+        if (currencyUiEntity.isFavorite) {
+            deleteToFavorite(currencyUiEntity)
+        } else {
+            addToFavorite(currencyUiEntity)
+        }
+        fetchCurrencies(DEFAULT_BASE)
+    }
 
-    companion object{
-         const val DEFAULT_BASE = "EUR"
+    private fun addToFavorite(currencyUiEntity: CurrencyUiEntity) {
+        viewModelScope.launch {
+            addToFavoriteUseCase.invoke(currencyUiEntity)
+        }
+    }
+
+    private fun deleteToFavorite(currencyUiEntity: CurrencyUiEntity) {
+        viewModelScope.launch {
+            deleteFromFavoriteUseCase.invoke(currencyUiEntity)
+        }
+    }
+
+    companion object {
+        const val DEFAULT_BASE = "EUR"
     }
 }

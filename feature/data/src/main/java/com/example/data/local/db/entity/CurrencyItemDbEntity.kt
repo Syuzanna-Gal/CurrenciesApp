@@ -10,8 +10,7 @@ import androidx.room.PrimaryKey
 data class CurrencyItemDbEntity(
     @PrimaryKey
     val name: String,
-    val price: Double,
-    val isFavorite: Boolean = false,
+    val value: String,
     // note: mutable fields
     @ColumnInfo(name = "created_at")
     var createdAt: Long,
