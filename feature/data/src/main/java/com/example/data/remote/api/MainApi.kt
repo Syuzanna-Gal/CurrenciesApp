@@ -1,5 +1,6 @@
 package com.example.data.remote.api
 
+import com.example.data.remote.entity.CurrencyEntity
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import retrofit2.http.GET
@@ -11,5 +12,5 @@ interface MainApi {
     suspend fun fetchCurrencies(
         @Query("base") base: String,
         @Query("symbols") symbols: String = "",
-    ): JsonObject
+    ): CurrencyEntity
 }

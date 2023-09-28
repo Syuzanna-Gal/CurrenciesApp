@@ -192,9 +192,7 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
                                     title = item.name,
                                     value = item.value,
                                     isFavorite = item.isFavorite,
-                                    onFavoriteStateChange = {
-
-                                    })
+                                    onFavoriteStateChange = {})
                             }
                         }
                     }

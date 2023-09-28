@@ -1,19 +1,18 @@
 package com.example.data.mapper
 
+import com.example.data.remote.entity.CurrencyEntity
 import com.example.domain.entity.CurrencyUiEntity
-import kotlinx.serialization.json.JsonObject
 
-class MapperCurrenciesJsonToUiEntity : Mapper<JsonObject, List<CurrencyUiEntity>> {
-    override fun map(from: JsonObject): List<CurrencyUiEntity> {
-        val currencies = mutableListOf<CurrencyUiEntity>()
-        from.keys.forEach {
+class MapperCurrenciesJsonToUiEntity : Mapper<CurrencyEntity, List<CurrencyUiEntity>> {
+    override fun map(from: CurrencyEntity): List<CurrencyUiEntity> {
+        var currencies = mutableListOf<CurrencyUiEntity>()
+        from.rates.keys.forEach {
             currencies.add(CurrencyUiEntity(name = it))
         }
-        from.values.forEach { jsonElement ->
-            currencies.map {
-                it.copy(value = jsonElement.toString())
-            }
-        }
+        currencies = currencies.map {
+            it.copy(value = from.rates[it.name] ?: "")
+        }.toMutableList()
+
         return currencies
     }
 }
