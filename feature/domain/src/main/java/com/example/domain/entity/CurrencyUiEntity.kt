@@ -1,7 +1,7 @@
 package com.example.domain.entity
 
-class CurrencyUiEntity(
-    val name: String,
-    val value: Double,
-    val isFavorite: Boolean,
+data class CurrencyUiEntity(
+    val name: String = "",
+    val value: String = "",
+    val isFavorite: Boolean = false,
 )

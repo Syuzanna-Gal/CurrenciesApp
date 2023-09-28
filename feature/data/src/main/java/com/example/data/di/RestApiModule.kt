@@ -37,6 +37,7 @@ object RestApiModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(
+        authInterceptor: AuthRequestInterceptor,
         loggingInterceptor: HttpLoggingInterceptor,
         cache: Cache,
     ): OkHttpClient = OkHttpClient.Builder()
@@ -47,8 +48,14 @@ object RestApiModule {
         .readTimeout(TIMEOUT_READ_SECONDS, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT_WRITE_SECONDS, TimeUnit.SECONDS)
         .cache(cache)
+        .addInterceptor(authInterceptor)
         .addInterceptor(loggingInterceptor)
         .build()
+
+
+    @Provides
+    @Singleton
+    fun provideAuthInterceptor() = AuthRequestInterceptor()
 
     @Provides
     @Singleton

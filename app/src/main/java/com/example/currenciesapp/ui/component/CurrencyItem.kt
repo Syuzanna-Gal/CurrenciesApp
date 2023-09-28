@@ -22,7 +22,7 @@ import com.example.currenciesapp.ui.theme.Jet
 @Composable
 fun CurrencyItem(
     title: String,
-    value: Double,
+    value: String,
     isFavorite: Boolean = false,
     onFavoriteStateChange: (String) -> Unit,
 ) {
@@ -43,7 +43,7 @@ fun CurrencyItem(
             )
         )
         Text(
-            text = value.toString(),
+            text = value,
             style = TextStyle(
                 fontSize = 16.sp,
                 color = Jet,

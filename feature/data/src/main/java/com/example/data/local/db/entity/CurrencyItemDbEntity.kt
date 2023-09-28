@@ -9,14 +9,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "currency_item", [Index(value = ["created_at"])])
 data class CurrencyItemDbEntity(
     @PrimaryKey
-    val id: Int,
     val name: String,
     val price: Double,
-    val weight: Double,
-    @ColumnInfo(name = "image_url")
-    val imageUrl: String,
+    val isFavorite: Boolean = false,
     // note: mutable fields
     @ColumnInfo(name = "created_at")
     var createdAt: Long,
-    var quantity: Int = 0,
 )

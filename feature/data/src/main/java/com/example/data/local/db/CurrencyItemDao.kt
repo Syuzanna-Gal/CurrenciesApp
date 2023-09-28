@@ -13,20 +13,17 @@ interface CurrencyItemDao {
     @Query("SELECT * FROM currency_item")
     fun findAllAsFlow(): Flow<List<CurrencyItemDbEntity>>
 
-    @Query("SELECT SUM(quantity) FROM currency_item")
-    fun sumOfQuantityAsFlow(): Flow<Int>
-
-    @Query("SELECT * FROM currency_item WHERE id = :productId")
-    fun findById(productId: Int): CurrencyItemDbEntity?
+    @Query("SELECT * FROM currency_item WHERE name = :name")
+    fun findByName(name: String): CurrencyItemDbEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(basketItem: CurrencyItemDbEntity)
+    suspend fun insert(currencyItem: CurrencyItemDbEntity)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update(basketItem: CurrencyItemDbEntity)
+    suspend fun update(currencyItem: CurrencyItemDbEntity)
 
     @Delete
-    suspend fun delete(basketItem: CurrencyItemDbEntity)
+    suspend fun delete(currencyItem: CurrencyItemDbEntity)
 
     @Query("DELETE FROM currency_item")
     suspend fun deleteAll()

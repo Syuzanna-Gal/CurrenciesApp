@@ -55,7 +55,7 @@ class FavoriteFragment : BaseComposeFragment<FavoriteViewModel>() {
                             items(4) {
                                 CurrencyItem(
                                     title = "AMD",
-                                    value = it.toDouble(),
+                                    value = it.toString(),
                                     isFavorite = true,
                                     onFavoriteStateChange = {},
                                 )

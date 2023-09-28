@@ -154,6 +154,7 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
                                             onClick = {
                                                 selectedOptionText = selectionOption
                                                 expanded = false
+                                                viewModel.fetchCurrencies(selectionOption)
                                             },
                                             contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
                                         )
@@ -192,7 +193,7 @@ class CurrenciesFragment : BaseComposeFragment<CurrenciesViewModel>() {
                                     value = item.value,
                                     isFavorite = item.isFavorite,
                                     onFavoriteStateChange = {
-                                        viewModel.updateCurrencies()
+
                                     })
                             }
                         }
