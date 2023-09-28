@@ -19,6 +19,7 @@ import com.example.currenciesapp.core.base.BaseComposeFragment
 import com.example.currenciesapp.ui.component.CurrencyItem
 import com.example.currenciesapp.ui.component.Toolbar
 import com.example.currenciesapp.ui.theme.Cultured
+import com.example.currenciesapp.ui.theme.CurrenciesAppTheme
 import com.example.currenciesapp.ui.theme.White
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,28 +31,35 @@ class FavoriteFragment : BaseComposeFragment<FavoriteViewModel>() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
     override fun InitView() {
-        Scaffold {
-            Column(
-                modifier = Modifier
-                    .background(White)
-                    .fillMaxHeight()
-            ) {
+        CurrenciesAppTheme {
+            Scaffold {
                 Column(
                     modifier = Modifier
-                        .background(Cultured)
-                        .padding(16.dp)
-                ) {
-                    Toolbar(title = stringResource(id = R.string.favorites_title))
-                }
-                Box(
-                    modifier = Modifier
                         .background(White)
-                        .padding(16.dp)
-                )
-                {
-                    LazyColumn {
-                        items(4) {
-                            CurrencyItem(title = "AMD", value = it.toDouble(), isFavorite = true)
+                        .fillMaxHeight()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .background(Cultured)
+                            .padding(16.dp)
+                    ) {
+                        Toolbar(title = stringResource(id = R.string.favorites_title))
+                    }
+                    Box(
+                        modifier = Modifier
+                            .background(White)
+                            .padding(16.dp)
+                    )
+                    {
+                        LazyColumn {
+                            items(4) {
+                                CurrencyItem(
+                                    title = "AMD",
+                                    value = it.toDouble(),
+                                    isFavorite = true,
+                                    onFavoriteStateChange = {},
+                                )
+                            }
                         }
                     }
                 }

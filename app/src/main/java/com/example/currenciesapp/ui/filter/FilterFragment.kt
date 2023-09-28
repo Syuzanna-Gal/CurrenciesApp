@@ -24,6 +24,7 @@ import com.example.currenciesapp.ui.component.Button
 import com.example.currenciesapp.ui.component.FilterItem
 import com.example.currenciesapp.ui.component.Toolbar
 import com.example.currenciesapp.ui.theme.Cultured
+import com.example.currenciesapp.ui.theme.CurrenciesAppTheme
 import com.example.currenciesapp.ui.theme.SonicSilver
 import com.example.currenciesapp.ui.theme.White
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,43 +37,45 @@ class FilterFragment : BaseComposeFragment<FilterViewModel>() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
     override fun InitView() {
-        Scaffold {
-            Column(
-                modifier = Modifier
-                    .background(White)
-                    .fillMaxHeight()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .background(Cultured)
-                        .padding(16.dp)
-                ) {
-                    Toolbar(
-                        title = stringResource(id = R.string.filters_title),
-                        isBackButtonVisible = true,
-                        backButtonAction = { viewModel.navigateUp() }
-                    )
-                }
+        CurrenciesAppTheme {
+            Scaffold {
                 Column(
                     modifier = Modifier
                         .background(White)
-                        .padding(16.dp)
+                        .fillMaxHeight()
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.filters_sort_by).uppercase(),
-                        style = TextStyle(
-                            fontSize = 12.sp,
-                            color = SonicSilver,
-                            fontStyle = FontStyle(R.font.inter),
-                            fontWeight = FontWeight(700),
-                        ),
-                        modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
-                    )
-                    for (i in 1..5) {
-                        FilterItem(title = "filter")
+                    Column(
+                        modifier = Modifier
+                            .background(Cultured)
+                            .padding(16.dp)
+                    ) {
+                        Toolbar(
+                            title = stringResource(id = R.string.filters_title),
+                            isBackButtonVisible = true,
+                            backButtonAction = { viewModel.navigateUp() }
+                        )
                     }
-                    Spacer(modifier = Modifier.weight(1f))
-                    Button(title = stringResource(id = R.string.filters_apply))
+                    Column(
+                        modifier = Modifier
+                            .background(White)
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.filters_sort_by).uppercase(),
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                color = SonicSilver,
+                                fontStyle = FontStyle(R.font.inter),
+                                fontWeight = FontWeight(700),
+                            ),
+                            modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
+                        )
+                        for (i in 1..5) {
+                            FilterItem(title = "filter")
+                        }
+                        Spacer(modifier = Modifier.weight(1f))
+                        Button(title = stringResource(id = R.string.filters_apply))
+                    }
                 }
             }
         }

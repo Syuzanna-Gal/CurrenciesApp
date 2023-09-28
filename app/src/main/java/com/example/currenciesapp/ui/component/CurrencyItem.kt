@@ -1,6 +1,7 @@
 package com.example.currenciesapp.ui.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,7 +20,12 @@ import com.example.currenciesapp.ui.theme.AntiFlashWhite
 import com.example.currenciesapp.ui.theme.Jet
 
 @Composable
-fun CurrencyItem(title: String, value: Double, isFavorite: Boolean = false) {
+fun CurrencyItem(
+    title: String,
+    value: Double,
+    isFavorite: Boolean = false,
+    onFavoriteStateChange: (String) -> Unit,
+) {
     Row(
         modifier = Modifier
             .padding(top = 16.dp)
@@ -52,7 +58,9 @@ fun CurrencyItem(title: String, value: Double, isFavorite: Boolean = false) {
                 painterResource(id = R.drawable.ic_favorite_deafult)
             },
             contentDescription = null,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier
+                .padding(start = 16.dp)
+                .clickable { onFavoriteStateChange(title) }
         )
     }
 }

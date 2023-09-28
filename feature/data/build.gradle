@@ -16,12 +16,34 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+
+        buildFeatures {
+            buildConfig = true
+        }
     }
 
     buildTypes {
         release {
+            buildConfigField("String", "API_BASE_URL", "\"https://api.apilayer.com/exchangerates_data/\"")
+
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+            )
+
+        }
+        debug {
+            buildConfigField("String", "API_BASE_URL", "\"https://api.apilayer.com/exchangerates_data/\"")
         }
     }
     compileOptions {
