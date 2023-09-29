@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -51,14 +53,14 @@ class FavoriteFragment : BaseComposeFragment<FavoriteViewModel>() {
                             .padding(16.dp)
                     )
                     {
+                        val favoritesState = viewModel.favorites.collectAsState()
                         LazyColumn {
-                            items(4) {
-                               /* CurrencyItem(
-                                    title = "AMD",
-                                    value = it.toString(),
-                                    isFavorite = true,
-                                    onFavoriteStateChange = {},
-                                )*/
+                            items(favoritesState.value) { item ->
+                                CurrencyItem(
+                                    item,
+                                    onFavoriteStateChange = {
+                                        viewModel.deleteFromFavorite(it)
+                                    })
                             }
                         }
                     }

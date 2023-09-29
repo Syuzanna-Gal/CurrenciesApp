@@ -26,8 +26,6 @@ class CurrenciesViewModel @Inject constructor(
     private val deleteFromFavoriteUseCase: DeleteFromFavoriteUseCase,
 ) : BaseComposeViewModel() {
 
-
-
     private val _currencies = MutableStateFlow<List<CurrencyUiEntity>>(emptyList())
     val currencies = _currencies.asStateFlow()
 
@@ -53,7 +51,7 @@ class CurrenciesViewModel @Inject constructor(
 
     fun addOrRemoveFromFavorite(currencyUiEntity: CurrencyUiEntity) {
         if (currencyUiEntity.isFavorite) {
-            deleteToFavorite(currencyUiEntity)
+            deleteFromFavorite(currencyUiEntity)
         } else {
             addToFavorite(currencyUiEntity)
         }
@@ -66,7 +64,7 @@ class CurrenciesViewModel @Inject constructor(
         }
     }
 
-    private fun deleteToFavorite(currencyUiEntity: CurrencyUiEntity) {
+    private fun deleteFromFavorite(currencyUiEntity: CurrencyUiEntity) {
         viewModelScope.launch {
             deleteFromFavoriteUseCase.invoke(currencyUiEntity)
         }

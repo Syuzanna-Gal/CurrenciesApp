@@ -23,6 +23,7 @@ import com.example.currenciesapp.core.base.BaseComposeFragment
 import com.example.currenciesapp.ui.component.Button
 import com.example.currenciesapp.ui.component.FilterItem
 import com.example.currenciesapp.ui.component.Toolbar
+import com.example.currenciesapp.ui.filter.entity.FilterEnum
 import com.example.currenciesapp.ui.theme.Cultured
 import com.example.currenciesapp.ui.theme.CurrenciesAppTheme
 import com.example.currenciesapp.ui.theme.SonicSilver
@@ -33,7 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FilterFragment : BaseComposeFragment<FilterViewModel>() {
     override val viewModel: FilterViewModel by viewModels()
 
-    @OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class, ExperimentalStdlibApi::class)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
     override fun InitView() {
@@ -70,9 +71,10 @@ class FilterFragment : BaseComposeFragment<FilterViewModel>() {
                             ),
                             modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
                         )
-                        for (i in 1..5) {
-                            FilterItem(title = "filter")
+                        FilterEnum.values().forEach {
+                            FilterItem(title = it.title)
                         }
+
                         Spacer(modifier = Modifier.weight(1f))
                         Button(title = stringResource(id = R.string.filters_apply))
                     }
